@@ -1,0 +1,5 @@
+require("core.globals")
+require("core.colors")
+require("core.bootstrap")
+require("plugins.lazy")
+require("core.keymaps.global")

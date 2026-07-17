@@ -1,0 +1,28 @@
+[general]
+cpus = 8
+editor = "vi"
+elevator = "/usr/bin/sudo"
+language = "en-US"
+noconfirm = true
+
+[aur]
+build = "/home/arata/.cache/aura/builds"
+cache = "/home/arata/.cache/aura/cache"
+clones = "/home/arata/.cache/aura/packages"
+hashes = "/home/arata/.cache/aura/hashes"
+chroot = []
+ignores = []
+git = false
+hotedit = false
+shellcheck = true
+diff = false
+delmakedeps = true
+clean = true
+warn_unknowns = true
+nocheck = false
+skipdepcheck = false
+reverse = false
+
+[backups]
+snapshots = "/home/arata/.cache/aura/snapshots"
+automatic = true

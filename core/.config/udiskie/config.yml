@@ -1,0 +1,6 @@
+program_options:
+  automount: true
+  notify: true
+  file_manager: xdg-open
+  notify_command: "/home/arata/.local/bin/yazi-udiskie {event} {mount_path}"
+

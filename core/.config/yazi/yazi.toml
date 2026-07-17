@@ -1,0 +1,13 @@
+[mgr]
+
+[opener]
+edit = [{ run = "nvim %s", block = true, for = "unix" }]
+extract = [
+  { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
+]
+
+[plugin]
+prepend_previewers = [
+  # Enable file icons
+  { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run = "ouch --show-file-icons" },
+]

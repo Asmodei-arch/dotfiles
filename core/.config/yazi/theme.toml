@@ -1,0 +1,5 @@
+[flavor]
+dark = "monokai"
+
+[indicator]
+padding = { open = "▐", close = "▌" }

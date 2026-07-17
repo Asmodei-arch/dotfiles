@@ -1,0 +1,253 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,ru"
+            options "grp:alt_shift_toggle,compose:ralt,caps:escape"
+        }
+
+    }
+
+    //warp-mouse-to-focus mode="center-xy"
+    workspace-auto-back-and-forth
+
+    touchpad {
+        tap
+        dwt
+        dwtp
+        natural-scroll
+        accel-speed 0.2
+        accel-profile "adaptive"
+    }
+
+    mouse {
+        natural-scroll
+        accel-speed 0.2
+        accel-profile "adaptive"
+    }
+
+    trackpoint {
+        natural-scroll
+        accel-speed 0.2
+        accel-profile "adaptive"
+        scroll-method "on-button-down"
+    }
+
+}
+
+layout {
+    gaps 10
+
+    center-focused-column "on-overflow"
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        width 4
+	inactive-color "#3c3836"
+        urgent-color "#cc241d"
+	active-gradient from="#d65d0e" to="#98971a" angle=135
+    }
+
+    // You can enable drop shadows for windows.
+    shadow {
+	    on
+    }
+
+}
+
+spawn-at-startup "waybar"
+spawn-at-startup "usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-sh-at-startup "foot --server"
+spawn-sh-at-startup "udiskie --appindicator -t"
+spawn-at-startup "throne"
+spawn-sh-at-startup "random_wallpaper"
+spawn-sh-at-startup "lock_image"
+spawn-at-startup "xwayland-satellite"
+spawn-sh-at-startup "waybar -c ~/.config/waybar/config_niri.json"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+
+prefer-no-csd
+screenshot-path "~/screens/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+
+animations {
+ workspace-switch {
+    spring damping-ratio=0.8 stiffness=1000 epsilon=0.0001
+  }
+
+  window-open {
+    duration-ms 150
+    curve "ease-out-quad"
+    // curve "ease-out-expo"
+  }
+
+  window-close {
+    duration-ms 150
+    curve "ease-out-quad"
+  }
+
+  horizontal-view-movement {
+    spring damping-ratio=0.8 stiffness=800 epsilon=0.0001
+  }
+
+  window-movement {
+    spring damping-ratio=0.8 stiffness=800 epsilon=0.0001
+  }
+
+  window-resize {
+    spring damping-ratio=0.8 stiffness=800 epsilon=0.0001
+  }
+
+  config-notification-open-close {
+    spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+  }
+
+  exit-confirmation-open-close {
+    spring damping-ratio=0.6 stiffness=500 epsilon=0.01
+  }
+
+  screenshot-ui-open {
+    duration-ms 200
+    curve "ease-out-quad"
+  }
+
+  overview-open-close {
+    spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+  }
+
+  recent-windows-close {
+    spring damping-ratio=1.0 stiffness=800 epsilon=0.001
+  }
+}
+
+window-rule {
+    match app-id="swaync"
+    open-focused false
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+W hotkey-overlay-title="Wallpaper" { spawn "random_wallpaper"; }
+    Mod+R hotkey-overlay-title="yazi" { spawn-sh "foot -e yazi-launch"; }
+    Mod+Shift+E hotkey-overlay-title="shutdown" { spawn-sh "shutdown -P now"; }
+
+    Mod+Shift+F hotkey-overlay-title="Open a browser" { spawn "qutebrowser"; }
+    Mod+B hotkey-overlay-title="Open a bluetooth" { spawn-sh "foot -e bluetoothctl"; }
+    Mod+Shift+W hotkey-overlay-title="Open a wifi-menu" { spawn-sh "foot -e iwctl"; }
+    Mod+Shift+T hotkey-overlay-title="Telegram" { spawn "Telegram"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "footclient"; }
+    Mod+D hotkey-overlay-title="Application Runner" { spawn "fuzzel"; }
+    Mod+N hotkey-overlay-title="Notifications" { spawn-sh "swaync-client -t"; }
+
+    // Example volume keys mappings for PipeWire & WirePlumber.
+    // The allow-when-locked=true property makes them work even when the session is locked.
+    // Using spawn-sh allows to pass multiple arguments together with the command.
+    // "-l 1.0" limits the volume to 100%.
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+    // Example media keys mapping using playerctl.
+    // This will work with any MPRIS-enabled media player.
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+
+    // Example brightness key mappings for brightnessctl.
+    // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
+    // but you need to manually put each argument in separate "" quotes.
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    // or do a four-finger swipe up on a touchpad.
+    Mod+O repeat=false { toggle-overview; }
+
+    Mod+C repeat=false { close-window; }
+
+    Mod+J     { focus-column-left; }
+    Mod+K     { focus-column-right; }
+
+    Mod+Ctrl+J     { move-column-left; }
+    Mod+Ctrl+K     { move-column-right; }
+
+    Mod+U              { focus-workspace-down; }
+    Mod+I              { focus-workspace-up; }
+    Mod+Shift+U         { move-column-to-workspace-down; } 
+    Mod+Shift+I         { move-column-to-workspace-up; }
+
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    Mod+F { maximize-column; }
+
+    // While maximize-column leaves gaps and borders around the window,
+    // maximize-window-to-edges doesn't: the window expands to the edges of the screen.
+    // This bind corresponds to normal window maximizing,
+    // e.g. by double-clicking on the titlebar.
+    Mod+M { maximize-window-to-edges; }
+
+
+    // Center all fully visible columns on screen.
+    Mod+Ctrl+C { center-column; }
+
+    // Finer width adjustments.
+    // This command can also:
+    // * set width in pixels: "1000"
+    // * adjust width in pixels: "-5" or "+5"
+    // * set width as a percentage of screen width: "25%"
+    // * adjust width as a percentage of screen width: "-10%" or "+10%"
+    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
+    // set-column-width "100" will make the column occupy 200 physical screen pixels.
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    // Move the focused window between the floating and the tiling layout.
+    Mod+V       { toggle-window-floating; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // Powers off the monitors. To turn them back on, do any input like
+    // moving the mouse or pressing any other key.
+    Mod+Shift+P { power-off-monitors; }
+    Mod+Shift+L hotkey-overlay-title="lock" { spawn-sh "lock_image"; }
+    Mod+Shift+X { spawn-sh "udiskie-umount /dev/sd[b-z]"; }
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "height": 30,
+    "position": "top",
+    "layer": "top",
+
+    "modules-left": [
+      "niri/workspaces"
+    ],
+
+    "modules-center": [
+      "niri/window"
+    ],
+
+    "modules-right": [
+      "cpu",
+      "memory",
+      "niri/language",
+      "pulseaudio",
+      "battery",
+      "clock",
+      "tray"
+    ],
+
+    "niri/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "magic": ""
+      },
+      "persistent-workspaces": {
+        "*": 9
+      },
+      "show-special": true,
+      "special-visible-only": true
+    },
+
+    "niri/language": {
+      "format-en": "en",
+      "format-ru": "ru",
+      "min-length": 3
+    },
+
+
+    "pulseaudio": {
+      "format": "{volume}%",
+      "format-bluetooth": "{volume}% ",
+      "format-icons": {
+        "default": [
+        ],
+      },
+      "format-muted": "",
+      "on-click": "pavucontrol"
+    },
+
+    "battery": {
+      "format": "{icon}  {capacity}%",
+      "format-alt": "{time} {icon}",
+      "format-charging": " {capacity}%",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "states": {
+        "critical": 1,
+        "warning": 30
+      }
+    },
+
+    "clock": {
+      "format": "{:%d.%m.%Y - %H:%M}",
+      "format-alt": "{:%A, %B %d at %R}"
+    },
+
+    "tray": {
+      "icon-size": 14,
+      "spacing": 1
+    },
+    "cpu" : {
+        "interval": 1,
+        "format": "  {usage}%",
+        "min-length": 6
+    },
+    "memory" : {
+        "min-length": 6
+    }
+  }
+]
+

@@ -18,22 +18,16 @@ function M.setup()
 		dapui.close()
 	end
 
-	dap.adapters.codelldb = {
-		type = "server",
-		port = "${port}",
-		executable = {
-			command = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb",
-			args = {
-				"--port",
-				"${port}",
-			},
-		},
+	dap.adapters.cppdbg = {
+		id = "cppdbg",
+		type = "executable",
+		command = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
 	}
 
 	dap.configurations.cpp = {
 		{
 			name = "Launch C++",
-			type = "codelldb",
+			type = "cppdbg",
 			request = "launch",
 
 			program = function()
@@ -41,6 +35,19 @@ function M.setup()
 			end,
 
 			cwd = "${workspaceFolder}",
+
+			MIMode = "gdb",
+			miDebuggerPath = "/usr/bin/gdb",
+
+			stopAtEntry = false,
+
+			setupCommands = {
+				{
+					text = "-enable-pretty-printing",
+					description = "Enable pretty printing",
+					ignoreFailures = false,
+				},
+			},
 		},
 	}
 end

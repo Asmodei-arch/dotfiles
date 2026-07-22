@@ -1,37 +1,22 @@
-local builtin = require("telescope.builtin")
-
 local map = vim.keymap.set
 
-map("n", "<leader>sh", builtin.help_tags, { desc = "Search Help" })
-map("n", "<leader>sk", builtin.keymaps, { desc = "Search Keymaps" })
-map("n", "<leader>sf", builtin.find_files, { desc = "Search Files" })
-map("n", "<leader>sg", builtin.live_grep, { desc = "Search Grep" })
-map("n", "<leader>sd", builtin.diagnostics, { desc = "Search Diagnostics" })
-map("n", "<leader>sr", builtin.resume, { desc = "Search Resume" })
-map("n", "<leader><leader>", builtin.buffers, { desc = "Buffers" })
-
-map("n", "<leader>/", function()
-	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
-end, { desc = "Search in buffer" })
-
-map("n", "<leader>s/", function()
-	builtin.live_grep({
-		grep_open_files = true,
-		prompt_title = "Live Grep Open Files",
+local function lsp_map(mode, key, func, desc)
+	map(mode, key, func, {
+		noremap = true,
+		silent = true,
+		desc = desc,
 	})
-end, { desc = "Search open files" })
+end
 
-vim.keymap("n", "<leader>sn", function()
-	builtin.find_files({ cwd = vim.fn.stdpath("config") })
-end, { desc = "Neovim config files" })
+lsp_map("n", "<leader>gd", vim.lsp.buf.definition, "Go to definition")
+lsp_map("n", "<leader>K", vim.lsp.buf.hover, "Show hover information")
+lsp_map("n", "<leader>gr", vim.lsp.buf.references, "Find references")
+lsp_map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+lsp_map("n", "<leader>fo", vim.lsp.buf.format, "Format code")
+lsp_map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
 
-local opts = { noremap = true, silent = true }
+lsp_map("n", "<leader>fe", vim.diagnostic.open_float, "Show diagnostic float")
+lsp_map("n", "[d", vim.diagnostic.get_prev, "Previous diagnostic")
+lsp_map("n", "]d", vim.diagnostic.get_next, "Next diagnostic")
 
-vim.keymap.set("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-vim.keymap.set("n", "<leader>K", ":lua vim.lsp.buf.hover<CR>", opts)
-vim.keymap.set("n", "<leader>gr", ":lua vim.lsp.buf.references<CR>", opts)
-vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename<CR>", opts)
-vim.keymap.set("n", "<leader>fo", ":lua vim.lsp.buf.format<CR>", opts)
+map("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Neogit" })

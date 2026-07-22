@@ -39,7 +39,6 @@ map("n", "<leader>fh", fzf.help_tags, {
 
 local opts = { noremap = true, silent = true }
 
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 map("n", "<leader>fo", ":lua vim.lsp.buf.format()<CR>", opts)
 
 map("n", "<leader>e", "<cmd>Yazi<CR>")
@@ -56,6 +55,8 @@ vim.keymap.set("n", "<F11>", dap.step_into)
 
 vim.keymap.set("n", "<F12>", dap.step_out)
 
-vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Set breakpoint" })
 
-vim.keymap.set("n", "<leader>du", dapui.toggle)
+vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle dapui" })
+
+require("core.keymaps.search")

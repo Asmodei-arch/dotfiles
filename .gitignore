@@ -6,3 +6,7 @@ core/.config/chromium-flag
 core/.config/gh
 core/.config/QtProject.conf
 core/.config/dconf
+core/.config/htop
+core/.config/simple-scan
+core/.config/pulse
+core/.config/systemd

@@ -1,3 +1,8 @@
 core/.config/mozilla
 core/.config/qutebrowser
 core/.config/libreoffice
+core/.config/Throne
+core/.config/chromium-flag
+core/.config/gh
+core/.config/QtProject.conf
+core/.config/dconf

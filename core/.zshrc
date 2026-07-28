@@ -30,10 +30,18 @@ setopt extendedglob
 
 bindkey -v
 
-bindkey '^[[A' history-search-backward
-bindkey '^K' history-search-backward
-bindkey '^[[B' history-search-forward
-bindkey '^J' history-search-forward
+
+autoload -U compinit; compinit
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^K' up-line-or-beginning-search
+bindkey '^[[B' up-line-or-beginning-search
+bindkey '^J' up-line-or-beginning-search
+
 # End of lines configured by zsh-newuser-install
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

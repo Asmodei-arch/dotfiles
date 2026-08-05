@@ -15,6 +15,7 @@ return {
 		"bibtex",
 		"cpp",
 		"cmake",
+		"dockerfile",
 	},
 
 	auto_install = true,

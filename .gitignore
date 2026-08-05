@@ -10,3 +10,5 @@ core/.config/htop
 core/.config/simple-scan
 core/.config/pulse
 core/.config/systemd
+core/.config/go
+core/.config/rncbc.org

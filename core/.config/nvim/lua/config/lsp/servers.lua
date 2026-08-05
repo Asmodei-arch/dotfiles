@@ -8,6 +8,8 @@ return {
 			"--completion-style=detailed",
 		},
 	},
+	dockerls = {},
+	yamlls = {},
 	lua_ls = {
 		cmd = { "lua-language-server" },
 		filetypes = { "lua" },

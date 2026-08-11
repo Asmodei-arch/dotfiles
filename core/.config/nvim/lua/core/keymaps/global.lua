@@ -3,7 +3,7 @@ local map = vim.keymap.set
 map("n", "<localleader>ls", "<cmd>VimtexCompileSS<CR>")
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+map("n", "<leader>q", vim.diagnostic.open_float, { desc = "Open diagnostic [Q]uickfix float" })
 
 -- splits
 map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })

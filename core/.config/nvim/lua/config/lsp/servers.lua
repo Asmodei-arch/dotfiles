@@ -3,7 +3,6 @@ return {
 		cmd = {
 			"clangd",
 			"--background-index",
-			"--clang-tidy",
 			"--query-driver=/usr/bin/g++,/usr/bin/gcc",
 			"--completion-style=detailed",
 		},

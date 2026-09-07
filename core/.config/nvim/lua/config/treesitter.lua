@@ -2,6 +2,7 @@ return {
 	ensure_installed = {
 		"bash",
 		"c",
+		"make",
 		"diff",
 		"html",
 		"lua",

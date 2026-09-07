@@ -12,3 +12,5 @@ core/.config/pulse
 core/.config/systemd
 core/.config/go
 core/.config/rncbc.org
+core/.config/transmission
+core/.config/keepassxc

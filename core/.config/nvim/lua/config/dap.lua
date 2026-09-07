@@ -24,6 +24,23 @@ function M.setup()
 		command = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
 	}
 
+	dap.adapters.python = {
+		type = "executable",
+		command = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python",
+		args = { "-m", "debugpy.adapter" },
+	}
+
+	dap.configurations.python = {
+		{
+			name = "Launch file",
+			type = "python",
+			request = "launch",
+			program = "${file}",
+			pythonPath = function()
+				return "python"
+			end,
+		},
+	}
 	dap.configurations.cpp = {
 		{
 			name = "Launch C++",

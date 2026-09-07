@@ -152,7 +152,7 @@ binds {
     Mod+R hotkey-overlay-title="yazi" { spawn-sh "foot -e yazi-launch"; }
     Mod+Shift+E hotkey-overlay-title="shutdown" { spawn-sh "shutdown -P now"; }
 
-    Mod+Shift+F hotkey-overlay-title="Open a browser" { spawn "qutebrowser"; }
+    Mod+Shift+F hotkey-overlay-title="Open a browser" { spawn "firefox"; }
     Mod+B hotkey-overlay-title="Open a bluetooth" { spawn-sh "foot -e bluetoothctl"; }
     Mod+Shift+W hotkey-overlay-title="Open a wifi-menu" { spawn-sh "foot -e iwctl"; }
     Mod+Shift+T hotkey-overlay-title="Telegram" { spawn "Telegram"; }

@@ -41,7 +41,7 @@ local opts = { noremap = true, silent = true }
 
 map("n", "<leader>fo", ":lua vim.lsp.buf.format()<CR>", opts)
 
-map("n", "<leader>e", "<cmd>Yazi<CR>")
+map("n", "<leader>e", "<cmd>Oil<CR>")
 
 local dap = require("dap")
 local dapui = require("dapui")

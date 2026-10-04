@@ -5,8 +5,11 @@ function M.setup()
 	local dapui = require("dapui")
 
 	dap.listeners.before.launch["build_before_debug"] = function()
-		require("cmake-tools").build()
+		if vim.bo.filetype == "cpp" then
+			require("cmake-tools").build()
+		end
 	end
+
 	dap.listeners.after.event_initialized["dapui_config"] = function()
 		dapui.open()
 	end
@@ -22,6 +25,27 @@ function M.setup()
 		id = "cppdbg",
 		type = "executable",
 		command = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+	}
+
+	dap.adapters.coreclr = {
+		type = "executable",
+		command = vim.fn.stdpath("data") .. "/mason/packages/netcoredbg/netcoredbg",
+		args = { "--interpreter=vscode" },
+	}
+
+	dap.configurations.cs = {
+		{
+			name = "Launch C#",
+			type = "coreclr",
+			request = "launch",
+
+			program = function()
+				return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/net10.0/", "file")
+			end,
+
+			cwd = "${workspaceFolder}",
+			stopAtEntry = false,
+		},
 	}
 
 	dap.adapters.python = {

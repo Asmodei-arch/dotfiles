@@ -3,8 +3,9 @@ return {
 		cmd = {
 			"clangd",
 			"--background-index",
-			"--query-driver=/usr/bin/g++,/usr/bin/gcc",
+			"--query-driver=/usr/bin/gcc,/usr/bin/g++",
 			"--completion-style=detailed",
+			"--header-insertion=never",
 		},
 	},
 	dockerls = {},

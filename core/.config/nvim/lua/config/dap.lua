@@ -29,7 +29,7 @@ function M.setup()
 
 	dap.adapters.coreclr = {
 		type = "executable",
-		command = vim.fn.stdpath("data") .. "/mason/packages/netcoredbg/netcoredbg",
+		command = "/usr/bin/netcoredbg",
 		args = { "--interpreter=vscode" },
 	}
 
@@ -40,11 +40,18 @@ function M.setup()
 			request = "launch",
 
 			program = function()
-				return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/net10.0/", "file")
+				local cwd = vim.fn.getcwd()
+				local folder_name = vim.fs.basename(cwd)
+				return cwd .. "/src/" .. folder_name .. "/bin/Debug/net10.0/" .. folder_name .. ".dll"
 			end,
 
-			cwd = "${workspaceFolder}",
+			cwd = function()
+				return vim.fn.getcwd()
+			end,
 			stopAtEntry = false,
+			justMyCode = true,
+			env = {},
+			args = {},
 		},
 	}
 

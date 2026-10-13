@@ -12,7 +12,7 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 export EDITOR="vim"
 export LANG="en_US.UTF-8"
 
-alias cl="clear -x"
+alias cl="clear"
 alias ls="eza -lh --icons=always"
 
 eval "$(zoxide init zsh)"
@@ -62,3 +62,16 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# Fuzzy Directory Navigator Configuration
+source "/home/arata/.local/lib/fzf-cd/fzf-cd-lib"
+___fzf_cd() {
+  __fzf_cd 
+  zle accept-line
+}
+zle -N ___fzf_cd
+bindkey '^f' ___fzf_cd
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/arata/.local/bin:$PATH"

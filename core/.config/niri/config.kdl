@@ -149,7 +149,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+W hotkey-overlay-title="Wallpaper" { spawn "random_wallpaper"; }
-    Mod+R hotkey-overlay-title="yazi" { spawn-sh "foot -e yazi-launch"; }
+    Mod+R hotkey-overlay-title="explorer" { spawn-sh "foot -e zsh -ic '__fzf_cd; exec zsh'"; }
     Mod+Shift+E hotkey-overlay-title="shutdown" { spawn-sh "shutdown -P now"; }
 
     Mod+Shift+F hotkey-overlay-title="Open a browser" { spawn "firefox"; }

@@ -17,6 +17,7 @@ alias ls="eza -lh --icons=always"
 
 eval "$(zoxide init zsh)"
 alias cd="z"
+alias vim="nvim"
 
 HISTFILE=~/.histfile
 HISTSIZE=999
@@ -51,7 +52,7 @@ function y() {
 	command rm -f -- "$tmp"
 }
 
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+if [[ $(tty) = /dev/tty1 ]]; then
     niri-session
 fi
 

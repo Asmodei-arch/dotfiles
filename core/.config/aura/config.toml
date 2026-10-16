@@ -1,6 +1,6 @@
 [general]
-cpus = 8
-editor = "vi"
+cpus = 3
+editor = "vim"
 elevator = "/usr/bin/sudo"
 language = "en-US"
 noconfirm = true

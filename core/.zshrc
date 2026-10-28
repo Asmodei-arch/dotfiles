@@ -11,6 +11,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export QT_QPA_PLATFORMTHEME=qt6ct
 export EDITOR="vim"
 export LANG="en_US.UTF-8"
+export HTTPS_PROXY="http://127.0.0.1:2080"
+export HTTP_PROXY="http://127.0.0.1:2080"
 
 alias cl="clear"
 alias ls="eza -lh --icons=always"

@@ -6,4 +6,5 @@ return {
 	tex = { "latexindent" },
 	cls = { "latexindent" },
 	bib = { "bibtex-tidy" },
+	cs = { "csharpier" },
 }

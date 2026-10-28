@@ -1,25 +1,25 @@
 local formatters = require("config.format.formatters")
 
 require("conform").setup({
-  notify_on_error = false,
+	notify_on_error = false,
 
-  format_on_save = function(bufnr)
-    local ft = vim.bo[bufnr].filetype
+	format_on_save = function(bufnr)
+		local ft = vim.bo[bufnr].filetype
 
-    local disable = {
-      c = true,
-      cpp = true,
-    }
+		local disable = {
+			c = true,
+			cpp = true,
+		}
 
-    if disable[ft] then
-      return nil
-    end
+		if disable[ft] then
+			return nil
+		end
 
-    return {
-      timeout_ms = 500,
-      lsp_format = "fallback",
-    }
-  end,
+		return {
+			timeout_ms = 1000,
+			lsp_format = ft == "cs" and "prefer" or "fallback",
+		}
+	end,
 
-  formatters_by_ft = formatters,
+	formatters_by_ft = formatters,
 })

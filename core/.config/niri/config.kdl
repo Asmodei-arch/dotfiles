@@ -67,6 +67,7 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-sh-at-startup "foot --server"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-sh-at-startup "udiskie --appindicator -t"
 spawn-sh-at-startup "random_wallpaper"
 spawn-at-startup "xwayland-satellite"

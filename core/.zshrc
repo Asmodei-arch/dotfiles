@@ -54,10 +54,6 @@ function y() {
 	command rm -f -- "$tmp"
 }
 
-if [[ $(tty) = /dev/tty1 ]]; then
-    niri-session
-fi
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -74,6 +70,10 @@ ___fzf_cd() {
 }
 zle -N ___fzf_cd
 bindkey '^f' ___fzf_cd
+
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  exec niri-session
+fi
 
 
 # Added by Antigravity CLI installer

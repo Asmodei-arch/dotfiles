@@ -75,6 +75,8 @@ spawn-sh-at-startup "waybar -c ~/.config/waybar/config_niri.json"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 spawn-at-startup "throne"
+spawn-sh-at-startup "uwsm finalize WAYLAND_DISPLAY DISPLAY"
+
 
 prefer-no-csd
 screenshot-path "~/screens/Screenshot from %Y-%m-%d %H-%M-%S.png"

@@ -24,3 +24,13 @@ require("mason-lspconfig").setup({
 		end,
 	},
 })
+-- Verible SystemVerilog / Verilog Language Server
+vim.lsp.config("verible", {
+	cmd = { "verible-verilog-ls" },
+	filetypes = { "verilog", "systemverilog" },
+	root_markers = { ".git" },
+	single_file_support = true,
+	capabilities = capabilities,
+})
+
+vim.lsp.enable("verible")
